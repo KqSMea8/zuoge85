@@ -5,18 +5,18 @@
   
   <title>react-native热更新 code-push入门。 | 小草的泡码笔记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前言大约在react-native 0.19版本的的时候开始使用其开发app，转眼之间已经0.49了，今天简单讲下使用codepush热更新。 首先需要说明的是经过多方验证，使用codepush 更新并不违法苹果app store 相关协议，因此能正常审核。但是需要注意在ios 不要有更新按钮和更新对话框。其他平台商店请查看官方文档。 附带2个本文不相关建议！  轻易别更新rn0.49.x 由于打">
+  <meta name="description" content="前言大约在react-native 0.19版本的的时候开始使用其开发app，转眼之间已经0.49了，今天简单讲下使用codepush热更新。 首先需要说明的是经过多方验证，使用codepush 更新并不违反苹果app store 相关协议，因此能正常审核。但是需要注意在ios 不要有更新按钮和更新对话框。其他平台商店请查看官方文档。 附带2个本文不相关建议！  轻易别更新rn0.49.x 由于打">
 <meta name="keywords" content="code-push,react-native">
 <meta property="og:type" content="article">
 <meta property="og:title" content="react-native热更新 code-push入门。">
 <meta property="og:url" content="http://www.forkjoin.org/2017/10-23-codepush/index.html">
 <meta property="og:site_name" content="小草的泡码笔记">
-<meta property="og:description" content="前言大约在react-native 0.19版本的的时候开始使用其开发app，转眼之间已经0.49了，今天简单讲下使用codepush热更新。 首先需要说明的是经过多方验证，使用codepush 更新并不违法苹果app store 相关协议，因此能正常审核。但是需要注意在ios 不要有更新按钮和更新对话框。其他平台商店请查看官方文档。 附带2个本文不相关建议！  轻易别更新rn0.49.x 由于打">
+<meta property="og:description" content="前言大约在react-native 0.19版本的的时候开始使用其开发app，转眼之间已经0.49了，今天简单讲下使用codepush热更新。 首先需要说明的是经过多方验证，使用codepush 更新并不违反苹果app store 相关协议，因此能正常审核。但是需要注意在ios 不要有更新按钮和更新对话框。其他平台商店请查看官方文档。 附带2个本文不相关建议！  轻易别更新rn0.49.x 由于打">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-10-23T16:01:28.964Z">
+<meta property="og:updated_time" content="2017-10-23T16:06:37.242Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="react-native热更新 code-push入门。">
-<meta name="twitter:description" content="前言大约在react-native 0.19版本的的时候开始使用其开发app，转眼之间已经0.49了，今天简单讲下使用codepush热更新。 首先需要说明的是经过多方验证，使用codepush 更新并不违法苹果app store 相关协议，因此能正常审核。但是需要注意在ios 不要有更新按钮和更新对话框。其他平台商店请查看官方文档。 附带2个本文不相关建议！  轻易别更新rn0.49.x 由于打">
+<meta name="twitter:description" content="前言大约在react-native 0.19版本的的时候开始使用其开发app，转眼之间已经0.49了，今天简单讲下使用codepush热更新。 首先需要说明的是经过多方验证，使用codepush 更新并不违反苹果app store 相关协议，因此能正常审核。但是需要注意在ios 不要有更新按钮和更新对话框。其他平台商店请查看官方文档。 附带2个本文不相关建议！  轻易别更新rn0.49.x 由于打">
   
     <link rel="alternate" href="/atom.xml" title="小草的泡码笔记" type="application/atom+xml">
   
@@ -60,7 +60,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.forkjoin.org"></form>
@@ -92,7 +92,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>大约在react-native 0.19版本的的时候开始使用其开发app，转眼之间已经0.49了，今天简单讲下使用codepush热更新。</p>
-<p>首先需要说明的是经过多方验证，使用codepush 更新并不违法苹果app store 相关协议，因此能正常审核。<br>但是需要注意在ios 不要有更新按钮和更新对话框。其他平台商店请查看官方文档。</p>
+<p>首先需要说明的是经过多方验证，使用codepush 更新并不违反苹果app store 相关协议，因此能正常审核。<br>但是需要注意在ios 不要有更新按钮和更新对话框。其他平台商店请查看官方文档。</p>
 <p>附带2个本文不相关建议！</p>
 <ol>
 <li>轻易别更新rn0.49.x 由于打包机制的变化，一些库不兼容，需要等待社区适应或者修复bug</li>
@@ -179,12 +179,13 @@
 <li>我一般会在app 里面整合一个隐藏的更新页面，比如通过点击某个地方10次， 跳转到更新界面查看更新信息和执行手动更新。</li>
 <li>Deployment Key可以在js 内替换，可以考虑通过常量控制Deployment Key发布不同的版本</li>
 <li>通过合理使用redux 管理状态，即便是立即更新打断用户也不会对用户输入造成较大影响，但是依然建议谨慎使用立即更新</li>
+<li>在调试模式下也能测试更新</li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.forkjoin.org/2017/10-23-codepush/" data-id="cj94db87l0004ba9k2op19rf0" class="article-share-link">Delen</a>
+      <a data-url="http://www.forkjoin.org/2017/10-23-codepush/" data-id="cj94db87l0004ba9k2op19rf0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code-push/">code-push</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-native/">react-native</a></li></ul>
@@ -197,7 +198,7 @@
   
   
     <a href="/2017/09-06-majiang-0/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ouder</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">OpenMajiang 麻将之服务端起步</div>
     </a>
   
@@ -215,7 +216,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Labels</h3>
+    <h3 class="widget-title">Tags</h3>
     <div class="widget">
       <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodePipeline/">CodePipeline</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/History/">History</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SPA/">SPA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/code-push/">code-push</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/majiang/">majiang</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react-native/">react-native</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react-router/">react-router</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信/">微信</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/持续集成/">持续集成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/阿里云/">阿里云</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/麻将/">麻将</a></li></ul>
     </div>
@@ -234,7 +235,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archieven</h3>
+    <h3 class="widget-title">Archives</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li></ul>
     </div>
@@ -244,7 +245,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recente berichten</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
