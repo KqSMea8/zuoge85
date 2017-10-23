@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>code-push入门（react-native) | 小草的泡码笔记</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前言大约在react-native 0.19版本的的时候开始使用其开发app，转眼之间已经0.49了，今天简单讲下使用codepush热更新。 首先需要说明的是经过多方验证，使用codepush 更新并不违法苹果app store 相关协议，因此能正常审核。但是需要注意在ios 不要有更新按钮和更新对话框。其他平台商店请查看官方文档。 附带2个本文不相关建议！  轻易别更新rn0.49.x 由于打">
+<meta name="keywords" content="code-push,react-native">
+<meta property="og:type" content="article">
+<meta property="og:title" content="code-push入门（react-native)">
+<meta property="og:url" content="http://www.forkjoin.org/2017/10-23-codepush/index.html">
+<meta property="og:site_name" content="小草的泡码笔记">
+<meta property="og:description" content="前言大约在react-native 0.19版本的的时候开始使用其开发app，转眼之间已经0.49了，今天简单讲下使用codepush热更新。 首先需要说明的是经过多方验证，使用codepush 更新并不违法苹果app store 相关协议，因此能正常审核。但是需要注意在ios 不要有更新按钮和更新对话框。其他平台商店请查看官方文档。 附带2个本文不相关建议！  轻易别更新rn0.49.x 由于打">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2017-10-23T15:56:00.309Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="code-push入门（react-native)">
+<meta name="twitter:description" content="前言大约在react-native 0.19版本的的时候开始使用其开发app，转眼之间已经0.49了，今天简单讲下使用codepush热更新。 首先需要说明的是经过多方验证，使用codepush 更新并不违法苹果app store 相关协议，因此能正常审核。但是需要注意在ios 不要有更新按钮和更新对话框。其他平台商店请查看官方文档。 附带2个本文不相关建议！  轻易别更新rn0.49.x 由于打">
+  
+    <link rel="alternate" href="/atom.xml" title="小草的泡码笔记" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">小草的泡码笔记</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">我有故事，你是否有酒？</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.forkjoin.org"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-codepush" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10-23-codepush/" class="article-date">
+  <time datetime="2017-10-23T14:40:38.000Z" itemprop="datePublished">2017-10-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      code-push入门（react-native)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>大约在react-native 0.19版本的的时候开始使用其开发app，转眼之间已经0.49了，今天简单讲下使用codepush热更新。</p>
+<p>首先需要说明的是经过多方验证，使用codepush 更新并不违法苹果app store 相关协议，因此能正常审核。<br>但是需要注意在ios 不要有更新按钮和更新对话框。其他平台商店请查看官方文档。</p>
+<p>附带2个本文不相关建议！</p>
+<ol>
+<li>轻易别更新rn0.49.x 由于打包机制的变化，一些库不兼容，需要等待社区适应或者修复bug</li>
+<li><a href="https://github.com/wix/react-native-navigation" target="_blank" rel="external">https://github.com/wix/react-native-navigation</a> 会修改大量地方，特别是入口，造成一些不兼容，很多插件不能正常link，需要谨慎对待</li>
+</ol>
+<blockquote>
+<p> code-push官方地址: <a href="https://github.com/Microsoft/code-push" target="_blank" rel="external">https://github.com/Microsoft/code-push</a></p>
+<p> code-push文档翻译: <a href="https://github.com/Microsoft/code-push/blob/master/cli/README-cn.md" target="_blank" rel="external">https://github.com/Microsoft/code-push/blob/master/cli/README-cn.md</a></p>
+</blockquote>
+<h2 id="准备环境"><a href="#准备环境" class="headerlink" title="准备环境"></a>准备环境</h2><p>1.安装react-native基础环境</p>
+<p>2.第一步安装 </p>
+<p><code>npm install -g code-push-cli</code></p>
+<p>3.登录或者注册，输入下列命令</p>
+<p><code>code-push register</code> 或者<code>code-push login</code></p>
+<blockquote>
+<p>都会打开浏览器完成注册或者登录，获取到一个token，然后在shell 输入token回车!</p>
+<p>可以使用 <code>code-push whoami</code>查看登录状态</p>
+<p>切换登录账户先使用<code>code-push logout</code>登出<br>其他相关详细命令请查看文档</p>
+</blockquote>
+<p>4.注册应用</p>
+<p><code>code-push app add MyApp-ios ios react-native</code></p>
+<p>需要注意的是，不同的平台需要注册不同的应用。</p>
+<p>注册结束后会显示当前应用的一对 Deployment Key，请记录下来。Staging 用于测试，Production用于发布</p>
+<blockquote>
+<p><code>code-push app ls</code> 列出已经注册的应用</p>
+<p><code>code-push app rm MyApp-ios</code> 删除刚刚注册的应用</p>
+</blockquote>
+<h2 id="集成插件"><a href="#集成插件" class="headerlink" title="集成插件"></a>集成插件</h2><p>环境准备好那么开始集成react-native-code-push插件</p>
+<ol>
+<li>安装插件</li>
+</ol>
+<p><code>npm install --save react-native-code-push</code></p>
+<ol>
+<li><p>link</p>
+<p>执行 <code>react-native link react-native-code-push</code><br>link过程会提醒输入Deployment Key。</p>
+</li>
+</ol>
+<blockquote>
+<p>低于0.27使用<code>rnpm link react-native-code-push</code></p>
+<p>js 代码更新的时候可以换掉  Deployment Key</p>
+</blockquote>
+<ol>
+<li>由于一些原因不能自动link 需要手动的请查看下列连接。</li>
+</ol>
+<blockquote>
+<p> [ios整合文档]<a href="https://github.com/Microsoft/react-native-code-push/blob/master/docs/setup-ios.md" target="_blank" rel="external">https://github.com/Microsoft/react-native-code-push/blob/master/docs/setup-ios.md</a></p>
+<p> [android整合文档]<a href="https://github.com/Microsoft/react-native-code-push/blob/master/docs/setup-android.md" target="_blank" rel="external">https://github.com/Microsoft/react-native-code-push/blob/master/docs/setup-android.md</a> </p>
+</blockquote>
+<h2 id="代码整合"><a href="#代码整合" class="headerlink" title="代码整合"></a>代码整合</h2><ol>
+<li>自动检查更新<br>app 入口加入下列代码</li>
+</ol>
+<p>下面代码的意思：当app恢复到前台后开始检查更新，如果是必选更新，那么立即更新；如果是可选更新，等下次恢复到前台立即安装更新！</p>
+<figure class="highlight plain"><figcaption><span>6</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">import codePush from &quot;react-native-code-push&quot;;</div><div class="line"></div><div class="line">let &#123;InstallMode,CheckFrequency&#125; =codePush;</div><div class="line">    </div><div class="line">let codePushOptions = &#123;</div><div class="line">  installMode: InstallMode.ON_NEXT_RESUME,//下次恢复到前台安装更新</div><div class="line">  mandatoryInstallMode: InstallMode.IMMEDIATE,//如果是必选更新，那么立即更新(会打断用户交互)</div><div class="line">  checkFrequency: CheckFrequency.ON_APP_RESUME,//检查更新的时机</div><div class="line">  deploymentKey: &apos;deploymentKey&apos;,//动态改变deploymentKey ，可以不设置，如果不设置使用原生代码内整合的key</div><div class="line">  updateDialog: null,//无对话框更新</div><div class="line">&#125;;</div><div class="line">AppRegistry.registerComponent(&apos;AppStarter&apos;, () =&gt; codePush(codePushOptions)(App));</div></pre></td></tr></table></figure>
+<ol>
+<li>手动更新</li>
+</ol>
+<p>在需要更新的地方整合下列代码，调用update 函数开始更新。</p>
+<p>先使用checkForUpdate检查更新是因为sync 不一定会触发更新动作。</p>
+<figure class="highlight plain"><figcaption><span>6</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">import codePush from &quot;react-native-code-push&quot;;</div><div class="line">const &#123;SyncStatus&#125; = codePush;</div><div class="line">const SYNC_MSG_MAP = &#123;</div><div class="line">  [SyncStatus.UP_TO_DATE]: &quot;已经是最新了&quot;,</div><div class="line">  [SyncStatus.UPDATE_IGNORED]: &quot;已忽略&quot;,</div><div class="line">  [SyncStatus.UPDATE_INSTALLED]: &quot;安装成功&quot;,</div><div class="line">  [SyncStatus.UNKNOWN_ERROR]: &quot;未知的错误&quot;,</div><div class="line">  [SyncStatus.SYNC_IN_PROGRESS]: &quot;后台已经在更新&quot;,</div><div class="line">  [SyncStatus.CHECKING_FOR_UPDATE]: &quot;再整检查&quot;,</div><div class="line">  [SyncStatus.AWAITING_USER_ACTION]: &quot;等等用户选择&quot;,</div><div class="line">  [SyncStatus.DOWNLOADING_PACKAGE]: &quot;下载中&quot;,</div><div class="line">  [SyncStatus.INSTALLING_UPDATE]: &quot;安装中&quot;,</div><div class="line">&#125;;</div><div class="line">const updateDialog=&#123;</div><div class="line">    descriptionPrefix: &quot;内容:&quot;,</div><div class="line">    mandatoryContinueButtonLabel: &quot;立即更新&quot;,</div><div class="line">    mandatoryUpdateMessage: &quot;必须更新&quot;,</div><div class="line">    optionalIgnoreButtonLabel: &quot;忽略&quot;,</div><div class="line">    optionalInstallButtonLabel: &quot;立即更新&quot;,</div><div class="line">    optionalUpdateMessage: &quot;一个更新是可用的。你想要安装它吗?&quot;,</div><div class="line">    title: &quot;检测到更新&quot;,</div><div class="line">&#125;;</div><div class="line"></div><div class="line">function update() &#123;</div><div class="line">  const &#123;InstallMode, sync, checkForUpdate&#125; = codePush;</div><div class="line">  checkForUpdate().then((remotePackage) =&gt; &#123;</div><div class="line">    sync(&#123;</div><div class="line">      updateDialog,//更新对话框的文字配置</div><div class="line">      deploymentKey: &apos;deploymentKey&apos;,//动态改变deploymentKey ，可以不设置，如果不设置使用原生代码内整合的key</div><div class="line">      installMode: InstallMode.IMMEDIATE,//普通更新立即更新</div><div class="line">      mandatoryInstallMode: InstallMode.IMMEDIATE//必选更新立即更新</div><div class="line">    &#125;).then((state) =&gt; &#123;</div><div class="line">      alert(SYNC_MSG_MAP[state] || &quot;未知状态&quot;);//显示更新结果提示</div><div class="line">    &#125;).catch((e) =&gt; &#123;</div><div class="line">      console.log(e)</div><div class="line">    &#125;);</div><div class="line">  &#125;).catch((e) =&gt; &#123;</div><div class="line">    console.log(e)</div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>3.获取更新信息和状态</p>
+<figure class="highlight plain"><figcaption><span>6</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">import codePush from &quot;react-native-code-push&quot;;</div><div class="line">function infoToString(info) &#123;</div><div class="line">  if(!info)&#123;</div><div class="line">    return &quot;&quot;;</div><div class="line">  &#125;</div><div class="line">  let &#123;appVersion = &quot;&quot;, label = &quot;&quot;, description = &quot;&quot;&#125; = info;</div><div class="line">  return `ver:$&#123;appVersion&#125;,$&#123;label&#125;,$&#123;description&#125;`;</div><div class="line">&#125;</div><div class="line"></div><div class="line">function checkUpdate()&#123;</div><div class="line"> codePush.getUpdateMetadata(codePush.UpdateState.RUNNING)</div><div class="line">  .then((info) =&gt; &#123;</div><div class="line">    this.setState(&#123;</div><div class="line">      runningInfo: infoToString(info)</div><div class="line">    &#125;)</div><div class="line">  &#125;)</div><div class="line">  .catch((e) =&gt; &#123;</div><div class="line">    console.log(e)</div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>UpdateState枚举有3个值 </p>
+<ol>
+<li>RUNNING 当前运行的包信息</li>
+<li>LATEST 服务器上最新的包信息</li>
+<li>PENDING 准备更新的包状态，比如下载完成后在等等安装的更新</li>
+</ol>
+<p>完整JavaScript api 查看 <a href="https://github.com/Microsoft/react-native-code-push/blob/master/docs/api-js.md" target="_blank" rel="external">https://github.com/Microsoft/react-native-code-push/blob/master/docs/api-js.md</a></p>
+</blockquote>
+<h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><p>整合好了就可以发布更新包，下面的</p>
+<ol>
+<li>发布包</li>
+</ol>
+<p><code>code-push release-react TestApp-ios ios -m --description &quot;修改bug，日常优化。&quot;</code></p>
+<blockquote>
+<p>-m 表示必须更新的包</p>
+</blockquote>
+<ol>
+<li>查看安装率</li>
+</ol>
+<p><code>code-push deployment ls TestApp-ios</code></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>我一般会在app 里面整合一个隐藏的更新页面，比如通过点击某个地方10次， 跳转到更新界面查看更新信息和执行手动更新。</li>
+<li>Deployment Key可以在js 内替换，可以考虑通过常量控制Deployment Key发布不同的版本</li>
+<li>通过合理使用redux 管理状态，即便是立即更新打断用户也不会对用户输入造成较大影响，但是依然建议谨慎使用立即更新</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.forkjoin.org/2017/10-23-codepush/" data-id="cj94db87l0004ba9k2op19rf0" class="article-share-link">Delen</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/code-push/">code-push</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-native/">react-native</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/09-06-majiang-0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Ouder</strong>
+      <div class="article-nav-title">OpenMajiang 麻将之服务端起步</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Labels</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CodePipeline/">CodePipeline</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/History/">History</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SPA/">SPA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/code-push/">code-push</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/majiang/">majiang</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react-native/">react-native</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react-router/">react-router</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/微信/">微信</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/持续集成/">持续集成</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/阿里云/">阿里云</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/麻将/">麻将</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/CodePipeline/" style="font-size: 10px;">CodePipeline</a> <a href="/tags/History/" style="font-size: 10px;">History</a> <a href="/tags/SPA/" style="font-size: 10px;">SPA</a> <a href="/tags/code-push/" style="font-size: 10px;">code-push</a> <a href="/tags/majiang/" style="font-size: 10px;">majiang</a> <a href="/tags/react-native/" style="font-size: 10px;">react-native</a> <a href="/tags/react-router/" style="font-size: 10px;">react-router</a> <a href="/tags/微信/" style="font-size: 10px;">微信</a> <a href="/tags/持续集成/" style="font-size: 10px;">持续集成</a> <a href="/tags/阿里云/" style="font-size: 10px;">阿里云</a> <a href="/tags/麻将/" style="font-size: 10px;">麻将</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archieven</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">八月 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recente berichten</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/10-23-codepush/">code-push入门（react-native)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09-06-majiang-0/">OpenMajiang 麻将之服务端起步</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08-25-WeixinShare/">解决SPA微信分享失效问题?!</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08-21-CodePipeline-ossweb/">阿里云 CodePipeline 持续集成之发布静态网站到OSS</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08-20-hello-world/">新开始</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 小草(zuoge85@gmail.com)<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
