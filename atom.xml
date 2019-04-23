@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>小草的泡码笔记</title>
+  
+  <subtitle>写代码,吹牛</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://www.forkjoin.org/"/>
+  <updated>2018-09-04T03:58:00.925Z</updated>
+  <id>http://www.forkjoin.org/</id>
+  
+  <author>
+    <name>小草(zuoge85@gmail.com)</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>taro-dva整合</title>
+    <link href="http://www.forkjoin.org/2018/08-31-TaroDva/"/>
+    <id>http://www.forkjoin.org/2018/08-31-TaroDva/</id>
+    <published>2018-08-31T12:00:00.000Z</published>
+    <updated>2018-09-04T03:58:00.925Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;小程序的开发体验和现在的前端开发完全是两个时代的事。&lt;/p&gt;
+&lt;p&gt;在之前的小程序开发中，我曾尝试使用 webpack 打包js
+        
+      
+    
+    </summary>
+    
+    
+      <category term="taro" scheme="http://www.forkjoin.org/tags/taro/"/>
+    
+      <category term="dva" scheme="http://www.forkjoin.org/tags/dva/"/>
+    
+      <category term="小程序" scheme="http://www.forkjoin.org/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/"/>
+    
+      <category term="react" scheme="http://www.forkjoin.org/tags/react/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>react-native热更新 code-push入门。</title>
+    <link href="http://www.forkjoin.org/2017/10-23-codepush/"/>
+    <id>http://www.forkjoin.org/2017/10-23-codepush/</id>
+    <published>2017-10-23T14:40:38.000Z</published>
+    <updated>2017-10-23T16:06:37.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;大约在react-native
+        
+      
+    
+    </summary>
+    
+    
+      <category term="code-push" scheme="http://www.forkjoin.org/tags/code-push/"/>
+    
+      <category term="react-native" scheme="http://www.forkjoin.org/tags/react-native/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>OpenMajiang 麻将之服务端起步</title>
+    <link href="http://www.forkjoin.org/2017/09-06-majiang-0/"/>
+    <id>http://www.forkjoin.org/2017/09-06-majiang-0/</id>
+    <published>2017-09-06T11:26:11.000Z</published>
+    <updated>2017-09-08T08:19:46.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="majiang" scheme="http://www.forkjoin.org/tags/majiang/"/>
+    
+      <category term="麻将" scheme="http://www.forkjoin.org/tags/%E9%BA%BB%E5%B0%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>解决SPA微信分享失效问题?!</title>
+    <link href="http://www.forkjoin.org/2017/08-25-WeixinShare/"/>
+    <id>http://www.forkjoin.org/2017/08-25-WeixinShare/</id>
+    <published>2017-08-25T01:44:38.000Z</published>
+    <updated>2017-08-25T08:30:11.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;古有ie6，今有微信browser，都是前段的梦魇。&lt;br&gt;自从上次解决微信spa(单页面应用)分享问题已经一年去了，最近又一次遇到问题。经过仔细分析先吧解决办法记录下来。&lt;/p&gt;
+&lt;p&gt;根据之前的经验对微信分享相关诡异情况进行一次总结！&lt;/p&gt;
+&lt;h2
+        
+      
+    
+    </summary>
+    
+    
+      <category term="微信" scheme="http://www.forkjoin.org/tags/%E5%BE%AE%E4%BF%A1/"/>
+    
+      <category term="SPA" scheme="http://www.forkjoin.org/tags/SPA/"/>
+    
+      <category term="react-router" scheme="http://www.forkjoin.org/tags/react-router/"/>
+    
+      <category term="History" scheme="http://www.forkjoin.org/tags/History/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>阿里云 CodePipeline 持续集成之发布静态网站到OSS</title>
+    <link href="http://www.forkjoin.org/2017/08-21-CodePipeline-ossweb/"/>
+    <id>http://www.forkjoin.org/2017/08-21-CodePipeline-ossweb/</id>
+    <published>2017-08-21T09:31:08.000Z</published>
+    <updated>2017-08-21T13:23:28.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;现在流行前后端彻底分离，前端生成webpack 打包的静态文件。可以通过 CodePipeline构建后发布到oss 进行发布前端。下面进行详细讲解&lt;/p&gt;
+&lt;h2 id=&quot;第一步-申请开通-CodePipeline&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="CodePipeline" scheme="http://www.forkjoin.org/tags/CodePipeline/"/>
+    
+      <category term="阿里云" scheme="http://www.forkjoin.org/tags/%E9%98%BF%E9%87%8C%E4%BA%91/"/>
+    
+      <category term="持续集成" scheme="http://www.forkjoin.org/tags/%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>新开始</title>
+    <link href="http://www.forkjoin.org/2017/08-20-hello-world/"/>
+    <id>http://www.forkjoin.org/2017/08-20-hello-world/</id>
+    <published>2017-08-20T09:31:08.000Z</published>
+    <updated>2017-08-21T09:39:05.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;一直说写blog，大概过了1年了，依然没开工，必须克服困难呀，哈哈&lt;/p&gt;
+
+        
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
